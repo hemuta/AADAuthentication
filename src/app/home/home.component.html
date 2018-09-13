@@ -1,0 +1,48 @@
+<div class="container" style="background-color: azure;">
+    <div class="row h-100 align-items-center">
+      <div class="col-md-2">
+          &nbsp;
+      </div>
+      <div class="col-md-8 text-center btn-toolbar">
+          <h2 class="text-center">You Have Been Successfully Authenticated by <i>Azure Active Directory</i></h2>
+          <br/>        
+          <!-- <button type="button" class="btn btn-primary col-md-3" (click)="ShowMyProfile()">Show My Profile</button>           -->
+          
+      </div>
+      <div class="col-md-2">
+          <button type="button" class="btn btn-secondary" (click)="logout()">Logout</button>
+      </div>
+  </div>
+  <div class="row h-100 align-items-center" *ngIf="IsShowProfile">
+    <div class="col-md-2">&nbsp;</div>
+    <div class="col-md-8 text-center btn-toolbar">
+        <label><b>Display Name : </b>{{profile.name}}</label>
+        <br/>
+        <label><b>Roles : </b>{{profile.roles}}</label>
+        <br/>
+        <label><b>EmailId : </b>{{profile.unique_name}}</label>
+        <br/>
+        <button type="button" [disabled]="profile.roles!='Admin'" class="btn btn-primary col-md-3" (click)="GetNationality()">Get Nationality</button>
+    </div>
+    <div class="col-md-2">
+        &nbsp;
+    </div>
+  </div>
+  <div class="row h-100 align-items-center" *ngIf="IsShowDrop" style="margin-top:10px;">
+    {{jsonData|json}}
+  </div>
+  <div class="clear"></div>
+  <div class="row h-100 align-items-center" *ngIf="IsShowDrop" style="margin-top:10px;">
+    <div class="col-md-2">&nbsp;</div>
+    <div class="col-md-8 text-center btn-toolbar">
+        <label><b>Display Name : </b>
+          <select class="dropdown">
+              <option value="0">--All--</option>
+              <option *ngFor="let country of NationalityData" value={{country.name}}>
+                  {{country.name}}
+              </option>
+          </select>
+        </label>
+    </div>
+  </div>
+</div>
